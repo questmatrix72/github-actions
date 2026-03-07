@@ -1,6 +1,18 @@
 # this is the workflow name
 name: cicd
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      env:
+        description: This is the environment value where this workflow runs
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev
+          - beta
+          - prod
+
 jobs:
   code:
     runs-on: ubuntu-slim
