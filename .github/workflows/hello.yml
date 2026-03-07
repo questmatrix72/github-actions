@@ -2,9 +2,7 @@
 
 name: Hello
 # runs on a trigger
-on:
-  push:
-    branches: [main]
+on: workflow_dispatch
 
 # these are the jobs of workflow
 
