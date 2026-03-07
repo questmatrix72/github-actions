@@ -1,0 +1,25 @@
+# this is the workflow name
+name: cicd
+jobs:
+  code:
+    runs-on: ubuntu-slim
+    steps:
+      - name: checkout code
+        run: echo "code git clone from github"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker build
+        run: echo docker --version
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test the container
+        run: echo "testing the container"
+  deploy:
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy the code
+        run: echo deploy
