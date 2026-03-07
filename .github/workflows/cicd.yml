@@ -1,5 +1,6 @@
 # this is the workflow name
 name: cicd
+on: workflow_dispatch
 jobs:
   code:
     runs-on: ubuntu-slim
