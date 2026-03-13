@@ -1,1 +1,38 @@
+name: portfolio
 
+on:
+    push:
+        branches: [main]
+
+jobs:
+    deploy:
+        permissions:
+            pages: write
+            id-token: write
+        runs-on: ubuntu-latest
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            # get access to your portfolio code via pre-built actions
+            # clones or checkout the code where this workflow is written
+            # STEP 1
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            # setup github action pages
+            # GitHub Pages is designed to host your personal, organization, or project pages from a GitHub repository.
+            # STEP 2
+            - name: Setup github pages
+              uses: actions/configure-pages@v4
+
+            # static code artifact
+            # STEP 3 : similar to upload inde.html in the nginx -> /var/ww/html 
+            - name: upload static files
+              uses: actions/upload-artifact@v4
+            
+            # Deploy that code 
+            # STEP 4
+            - name: Deploy to github pages
+              uses: actions/deploy-pages@v4
