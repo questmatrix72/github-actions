@@ -10,6 +10,7 @@ jobs:
         permissions:
             pages: write
             id-token: write
+            contents: read
         runs-on: ubuntu-latest
 
         environment:
@@ -38,4 +39,5 @@ jobs:
             # Deploy that code 
             # STEP 4
             - name: Deploy to github pages
+              id: deployment
               uses: actions/deploy-pages@v4
